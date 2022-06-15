@@ -1,4 +1,5 @@
 
+// This is uuidv4 function is for generating decently random ids, sufficient for the uses of identitification in a polis conversation
 
 // This uuid function is from https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
 function uuidv4() {
@@ -25,9 +26,13 @@ function uuidv4() {
   }
 }
 
+// a function for dynamically building a polis container div based on the random uuid
+
 function buildEmbedDiv(xid) {
   return "<div class='polis' data-conversation_id='2demo' data-xid='" + xid + "'></div>"
 }
+
+// check to see if there is already a polisUserXID in localStorage, and assign one if there isn't
 
 if (localStorage.polisUserXID) {
   console.log("Existing polisUserXID found:", localStorage.polisUserXID)
@@ -37,8 +42,13 @@ if (localStorage.polisUserXID) {
   localStorage.polisUserXID = userXID
 }
 
+// create the embed script tag which will trigger the embedding
+
 var embedScript = document.createElement("script");
 embedScript.setAttribute("src", "https://pol.is/embed.js")
+
+
+// Attach the embed div based on localStorage.polisUserXID, and execute embed script by embedding it in the page
 
 var polisContainer = document.getElementById('polis-container')
 polisContainer.innerHTML = buildEmbedDiv(localStorage.polisUserXID)
