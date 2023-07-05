@@ -37,9 +37,19 @@ Please feel free to submit PRs for new examples which show a more nuanced/custom
 ## Embed callbacks
 
 There are occasions where it may be useful to have the embedding webpage/app dynamically react to events that occur in the Polis embed iframe.
-This is possible by  adding an event listener to the window as follows:
+This is possible by adding an event listener to the window as follows:
 
 ```html
+<div class="container">
+  <div class="polis" data-conversation_id="43hmhaj9vm"></div>
+  <div class="data">
+    <h2>postMessages from iframe</h2>
+    <p>Try resizing window, voting, and submitting new comments.</p>
+    <ul id="post-messages"></ul>
+  </div>
+</div>
+
+<script async src="https://pol.is/embed.js"></script>
 <script type="text/javascript">
   window.addEventListener('message', function (event) {
     var data = event.data || {};
