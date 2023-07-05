@@ -34,3 +34,22 @@ With all of the above in mind, these examples illustrate a set of common configu
 
 Please feel free to submit PRs for new examples which show a more nuanced/customized setup.
  
+## Embed callbacks
+
+There are occasions where it may be useful to have the embedding webpage/app dynamically react to events that occur in the Polis embed iframe.
+This is possible by  adding an event listener to the window as follows:
+
+```html
+<script type="text/javascript">
+  window.addEventListener('message', function (event) {
+    var data = event.data || {};
+    if (!event.origin.match(/pol.is$/)) {
+      return;
+    }
+    var listEl = document.getElementById('post-messages');
+    var listItemEl = document.createElement('li')
+    listItemEl.innerHTML = JSON.stringify(data, null, 2);
+    listEl.appendChild(listItemEl);
+  })
+</script>
+```
